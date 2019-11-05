@@ -8,18 +8,18 @@ app.use(requestIp.mw())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.get('/', function (req, res) {
-    Request.get("http://localhost/project/", (error, response, body) => {
+    Request.get("http://php-service.api.svc.cluster.local", (error, response, body) => {
     if(error) {
         return console.dir(error);
     }
     var address=os.networkInterfaces();
-    console.dir(JSON.parse(body));
+   // console.dir(JSON.parse(body));
     let json = JSON.parse(body);
-    var ip=address.Ethernet[1].address;
-    json["nodeip"]=ip;
+   // var ip=address.Ethernet[1].address;
+   // json["nodeip"]=ip;
     res.send(json);
       
-    console.log(ip);
+   // console.log(ip);
    // res.send(ip);
    // res.end(ip + '\n');
 });
